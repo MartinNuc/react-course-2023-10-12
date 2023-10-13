@@ -1,9 +1,11 @@
 import { useContext } from 'react';
 import { useJoke } from './use-joke';
 import { ThemeContext } from './App';
+import { useParams } from "react-router-dom";
 
 export function Joke() {
-  const { joke, isLoading, loadNext } = useJoke();
+  const {category} = useParams();
+  const { joke, isLoading, loadNext } = useJoke(category);
 
   const { theme } = useContext(ThemeContext);
   const isLightTheme = theme === 'light';

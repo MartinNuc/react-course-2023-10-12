@@ -1,19 +1,35 @@
 import './App.css';
-import { Table } from './table';
-import { CounterButton } from './counter-button';
-import { RandomNumbers } from './random-numbers';
-import { Hider } from './hider';
-import { AutomaticCounter } from './automatic-counter';
-import { Dropdown } from './dropdown/dropdown';
-import {Joke} from './joke';
 import React, { useState } from 'react';
-import {ToggleThemeButton} from './toggle-theme'
+import {createBrowserRouter, RouterProvider} from 'react-router-dom';
+import { Layout } from './layout';
+import { Home } from './pages/home';
+import {Categories } from './pages/categories'
+import { Joke } from './joke';
 
 export const ThemeContext = React.createContext();
 
-function App() {
-  const pole = [1, 2, 3, 4];
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Layout />,
+    children: [
+      {
+        index: true,
+        element: <Home />
+      },
+      {
+        path: 'categories',
+        element: <Categories />
+      },
+      {
+        path: 'categories/:category',
+        element: <Joke />
+      },
+    ]
+  }
+]);
 
+function App() {
   const [theme, setTheme] = useState('dark');
 
   function toggleTheme() {
@@ -29,26 +45,9 @@ function App() {
       theme,
       toggleTheme
     }}>
-      <h1>Hello {pole}</h1>
 
-      <Joke />
-
-      <Dropdown title="show dropdown">
-        Tohle je dropdown content:
-        <ul>
-          <li>google.com</li>
-          <li>facebook.com</li>
-          <li>seznam.cz</li>
-        </ul>
-      </Dropdown>
-
-      <Hider>
-        <AutomaticCounter />
-      </Hider>
-      <RandomNumbers pregeneratedCount={5} />
-      <CounterButton />
-      <ToggleThemeButton />
-      <Table rows={3} columns={4} />
+      <RouterProvider router={router} />
+      
     </ThemeContext.Provider>
   );
 }
