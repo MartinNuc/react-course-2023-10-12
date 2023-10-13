@@ -1,17 +1,20 @@
-import './App.css'
-import {Table} from './table';
-import {CounterButton} from './counter-button'
-import {RandomNumbers} from './random-numbers'
-import {Hider} from './hider'
+import './App.css';
+import { Table } from './table';
+import { CounterButton } from './counter-button';
+import { RandomNumbers } from './random-numbers';
+import { Hider } from './hider';
 import { AutomaticCounter } from './automatic-counter';
-import {Dropdown} from './dropdown/dropdown'
+import { Dropdown } from './dropdown/dropdown';
+import {Joke} from './joke';
 
 function App() {
-  const pole = [1,2,3,4];
+  const pole = [1, 2, 3, 4];
 
   return (
     <>
       <h1>Hello {pole}</h1>
+
+      <Joke />
 
       <Dropdown title="show dropdown">
         Tohle je dropdown content:
@@ -29,7 +32,7 @@ function App() {
       <CounterButton />
       <Table rows={3} columns={4} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
