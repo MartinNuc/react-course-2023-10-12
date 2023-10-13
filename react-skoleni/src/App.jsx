@@ -6,12 +6,29 @@ import { Hider } from './hider';
 import { AutomaticCounter } from './automatic-counter';
 import { Dropdown } from './dropdown/dropdown';
 import {Joke} from './joke';
+import React, { useState } from 'react';
+import {ToggleThemeButton} from './toggle-theme'
+
+export const ThemeContext = React.createContext();
 
 function App() {
   const pole = [1, 2, 3, 4];
 
+  const [theme, setTheme] = useState('dark');
+
+  function toggleTheme() {
+    if(theme === 'light') {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  }
+
   return (
-    <>
+    <ThemeContext.Provider value={{
+      theme,
+      toggleTheme
+    }}>
       <h1>Hello {pole}</h1>
 
       <Joke />
@@ -30,8 +47,9 @@ function App() {
       </Hider>
       <RandomNumbers pregeneratedCount={5} />
       <CounterButton />
+      <ToggleThemeButton />
       <Table rows={3} columns={4} />
-    </>
+    </ThemeContext.Provider>
   );
 }
 
