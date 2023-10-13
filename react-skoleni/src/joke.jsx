@@ -1,20 +1,10 @@
-import { useEffect, useState } from "react"
-import axios from 'axios';
+import { useJoke } from "./use-joke";
 
 export function Joke() {
-  const [joke, setJoke] = useState(null);
-
-  useEffect(() => {
-    loadJoke();
-  }, []);
-
-  function loadJoke() {
-    axios.get('https://api.chucknorris.io/jokes/random')
-      .then(response => setJoke(response.data.value))
-  }
+  const {joke, isLoading, loadNext} = useJoke();
 
   return <>
-    <button onClick={loadJoke}>Next joke</button>
-    <p>{joke}</p>
+    <button onClick={loadNext}>Next joke</button>
+    <p>{isLoading ? 'Loading...' : joke}</p>
   </>
 }
