@@ -4,6 +4,7 @@ import {CounterButton} from './counter-button'
 import {RandomNumbers} from './random-numbers'
 import {Hider} from './hider'
 import { AutomaticCounter } from './automatic-counter';
+import {Dropdown} from './dropdown/dropdown'
 
 function App() {
   const pole = [1,2,3,4];
@@ -11,6 +12,16 @@ function App() {
   return (
     <>
       <h1>Hello {pole}</h1>
+
+      <Dropdown title="show dropdown">
+        Tohle je dropdown content:
+        <ul>
+          <li>google.com</li>
+          <li>facebook.com</li>
+          <li>seznam.cz</li>
+        </ul>
+      </Dropdown>
+
       <Hider>
         <AutomaticCounter />
       </Hider>
